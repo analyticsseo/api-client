@@ -35,6 +35,12 @@ class SerpsApiClient
      */
     private $auth;
 
+    /**
+     * activate debug mode
+     * @var boolean
+     */
+    public $debug = false;
+
     public function __construct(\Guzzle\Http\Client $transport, KeyAuth $auth)
     {
         $this->setTransport($transport);
@@ -51,7 +57,10 @@ class SerpsApiClient
         $authHeader = $this->getAuth()->computeHash();
         $authParts = explode(':', $authHeader);
 
-        // $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
+        if (true === $this->debug){
+            $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
+        }
+
         $request =  $this->transport->post(
             '/search_results/',
             array(
@@ -77,7 +86,9 @@ class SerpsApiClient
         $authHeader = $this->getAuth()->computeHash();
         $authParts = explode(':', $authHeader);
 
-        // $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
+        if (true === $this->debug){
+            $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
+        }
 
         $request =  $this->transport->get('/search_results/' . $id);
         $response = $request->send();

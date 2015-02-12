@@ -20,60 +20,70 @@ class SerpsRequest
     /**
      * Internal search engine name
      * @var string
+     * @read-only
      */
     private $search_engine;
 
     /**
      * Region code
      * @var string
+     * @read-only
      */
     private $region;
 
     /**
      * town name
      * @var string
+     * @read-only
      */
     private $town;
 
     /**
      * The search type
      * @var string
+     * @read-only
      */
     private $search_type ;
 
     /**
      * Language code
      * @var string
+     * @read-only
      */
     private $language;
 
     /**
      * Maximun number of results to return
      * @var integer
+     * @read-only
      */
     private $max_results;
 
     /**
      * The phrase to search for.
      * @var string
+     * @read-only
      */
     private $phrase;
 
     /**
      * return universal search results
      * @var boolean
+     * @read-only
      */
     private $universal;
 
     /**
      * Set to use a specific strategy
      * @var string
+     * @read-only
      */
     private $strategy;
 
     /**
      * strategy configuration
-     * @var object
+     * @var array
+     * @read-only
      */
     private $parameters;
 
@@ -81,6 +91,7 @@ class SerpsRequest
      * list of supported search engines
      *
      * @var string[]
+     * @private
      */
     private $supportedSearchEngines = array('bing', 'google', 'yahoo', 'yandex');
 
@@ -113,7 +124,7 @@ class SerpsRequest
      *
      * @return void
      */
-    public function populateField($field, $value)
+    private function populateField($field, $value)
     {
 
         if ("search_engine" == $field) {
@@ -128,7 +139,7 @@ class SerpsRequest
             return $this->setTown($value);
         }
 
-        if ("search_type " == $field) {
+        if ("search_type" == $field) {
             return $this->setSearchType($value);
         }
 
@@ -177,6 +188,17 @@ class SerpsRequest
         return json_encode($json);
     }
 
+
+    /**
+     * Get the value of Internal search engine name
+     *
+     * @return string
+     */
+    public function getSearchEngine()
+    {
+        return $this->search_engine;
+    }
+
     /**
      * Set the value of Internal search engine name
      *
@@ -184,9 +206,8 @@ class SerpsRequest
      *
      * @return self
      */
-    public function setSearchEngine($search_engine)
+    private function setSearchEngine($search_engine)
     {
-
         if (false === in_array($search_engine, $this->getSupportedSearchEngines())) {
             throw new \InvalidArgumentException('Search Engine is not supported');
         }
@@ -197,17 +218,37 @@ class SerpsRequest
     }
 
     /**
+     * Get the value of Region code
+     *
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
      * Set the value of Region code
      *
      * @param string region
      *
      * @return self
      */
-    public function setRegion($region)
+    private function setRegion($region)
     {
         $this->region = $region;
 
         return $this;
+    }
+
+    /**
+     * Get the value of town name
+     *
+     * @return string
+     */
+    public function getTown()
+    {
+        return $this->town;
     }
 
     /**
@@ -217,11 +258,21 @@ class SerpsRequest
      *
      * @return self
      */
-    public function setTown($town)
+    private function setTown($town)
     {
         $this->town = $town;
 
         return $this;
+    }
+
+    /**
+     * Get the value of The search type
+     *
+     * @return string
+     */
+    public function getSearchType()
+    {
+        return $this->search_type;
     }
 
     /**
@@ -231,11 +282,21 @@ class SerpsRequest
      *
      * @return self
      */
-    public function setSearchType($search_type)
+    private function setSearchType($search_type)
     {
         $this->search_type = $search_type;
 
         return $this;
+    }
+
+    /**
+     * Get the value of Language code
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
 
     /**
@@ -245,11 +306,21 @@ class SerpsRequest
      *
      * @return self
      */
-    public function setLanguage($language)
+    private function setLanguage($language)
     {
         $this->language = $language;
 
         return $this;
+    }
+
+    /**
+     * Get the value of Maximun number of results to return
+     *
+     * @return integer
+     */
+    public function getMaxResults()
+    {
+        return $this->max_results;
     }
 
     /**
@@ -259,11 +330,21 @@ class SerpsRequest
      *
      * @return self
      */
-    public function setMaxResults($max_results)
+    private function setMaxResults($max_results)
     {
         $this->max_results = $max_results;
 
         return $this;
+    }
+
+    /**
+     * Get the value of The phrase to search for.
+     *
+     * @return string
+     */
+    public function getPhrase()
+    {
+        return $this->phrase;
     }
 
     /**
@@ -273,11 +354,21 @@ class SerpsRequest
      *
      * @return self
      */
-    public function setPhrase($phrase)
+    private function setPhrase($phrase)
     {
         $this->phrase = $phrase;
 
         return $this;
+    }
+
+    /**
+     * Get the value of return universal search results
+     *
+     * @return boolean
+     */
+    public function getUniversal()
+    {
+        return $this->universal;
     }
 
     /**
@@ -287,11 +378,21 @@ class SerpsRequest
      *
      * @return self
      */
-    public function setUniversal($universal)
+    private function setUniversal($universal)
     {
         $this->universal = $universal;
 
         return $this;
+    }
+
+    /**
+     * Get the value of Set to use a specific strategy
+     *
+     * @return string
+     */
+    public function getStrategy()
+    {
+        return $this->strategy;
     }
 
     /**
@@ -301,7 +402,7 @@ class SerpsRequest
      *
      * @return self
      */
-    public function setStrategy($strategy)
+    private function setStrategy($strategy)
     {
         $this->strategy = $strategy;
 
@@ -309,13 +410,23 @@ class SerpsRequest
     }
 
     /**
+     * Get the value of strategy configuration
+     *
+     * @return object
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    /**
      * Set the value of strategy configuration
      *
-     * @param string[] parameters an associative array with the parameters for the specific strategy
+     * @param object parameters
      *
      * @return self
      */
-    public function setParameters(array $parameters)
+    private function setParameters(array $parameters)
     {
         $this->parameters = $parameters;
 
@@ -327,22 +438,8 @@ class SerpsRequest
      *
      * @return string[]
      */
-    public function getSupportedSearchEngines()
+    private function getSupportedSearchEngines()
     {
         return $this->supportedSearchEngines;
-    }
-
-    /**
-     * Set the value of list of supported search engines
-     *
-     * @param string[] supportedSearchEngines
-     *
-     * @return self
-     */
-    public function setSupportedSearchEngines(array $supportedSearchEngines)
-    {
-        $this->supportedSearchEngines = $supportedSearchEngines;
-
-        return $this;
     }
 }

@@ -32,10 +32,9 @@ class KeyAuth
      */
     private $apiKey;
 
-
     public function computeHash()
     {
-        $time = time();
+        $time = $this->getTimestamp();
 
         $hashSource = $time . $this->getApiKey() . $this->getSalt();
         $hash = hash_hmac('sha256', $hashSource, $this->getApiSecret());
@@ -127,20 +126,6 @@ class KeyAuth
      */
     public function getTimestamp()
     {
-        return $this->timestamp;
-    }
-
-    /**
-     * Set the value of current timestamp
-     *
-     * @param integer timestamp
-     *
-     * @return self
-     */
-    public function setTimestamp($timestamp)
-    {
-        $this->timestamp = $timestamp;
-
-        return $this;
+        return time();
     }
 }

@@ -1,0 +1,5 @@
+composer.phar
+vendor
+settings.php
+tests/unit/coverage/
+tests/unit/coverage

@@ -1,10 +1,15 @@
-# Analytics SEO Official API client
+# Analytics SEO Official PHP API client
 
 ## PHP Client
 
-### Installation
-    1. clone repository
-    2. go to ```PHP``` folder
-    3. run ```composer.phar install```
+### Pre requisites
+1. a working php version > 5.3
+2. composer should be installed, see [composer](http://www.getcomposer.org) for details how to install
 
-    to test the instalation go to ```tests\functional``` folder and run ```php serps.php```
+### Installation
+
+1. clone repository
+2. go to the cloned folder folder
+3. run ```composer.phar install```
+
+to test the installation go to ```tests\functional``` folder and run ```php serps.php```
